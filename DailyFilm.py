@@ -85,7 +85,7 @@ class DailyFilm:
 
     @staticmethod
     def get_movie_index():
-        return Database.get_next_index()
+        return Database.get_next_index() + 1
 
     @staticmethod
     def get_md_overview(overview):
