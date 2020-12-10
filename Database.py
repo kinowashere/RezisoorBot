@@ -19,7 +19,7 @@ class Database:
     @staticmethod
     def is_movie_in_db(m_id):
         conn = sqlite3.connect('dailyfilm.db')
-        query = "SELECT COUNT(id) FROM movies WHERE id = {} ;".format(m_id)
+        query = f"SELECT COUNT(id) FROM movies WHERE id = {m_id} ;"
         cursor = conn.execute(query).fetchone()[0]
         conn.close()
         if cursor > 0:
@@ -29,7 +29,7 @@ class Database:
     @staticmethod
     def insert_movie(m_id, is_valid):
         conn = sqlite3.connect('dailyfilm.db')
-        query = "INSERT INTO movies (id, is_valid) VALUES ({}, {}) ;".format(m_id, is_valid)
+        query = f"INSERT INTO movies (id, is_valid) VALUES ({m_id}, {is_valid}) ;"
         conn.execute(query)
         conn.commit()
         conn.close()
