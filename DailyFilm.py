@@ -63,17 +63,17 @@ class DailyFilm:
         md_cast = self.get_md_cast(m.casts['cast'])
         md_tmdb = "[TMDb](https://www.themoviedb.org/)"
         md_rzb = "[RežisöörBot](https://github.com/manueltrinidad/RezisoorBot)"
-        template = "Daily Film No. {} |{}\n\n" \
-                   "{}\n\n" \
-                   "Directed By:\n" \
-                   "{}\n\n" \
-                   "Written By:\n" \
-                   "{}\n\n" \
-                   "Cast\n" \
-                   "{}\n\n" \
+        template = f"Daily Film No. {index} |{md_title}\n\n" \
+                   f"{md_overview}\n\n" \
+                   f"Directed By:\n" \
+                   f"{md_directors}\n\n" \
+                   f"Written By:\n" \
+                   f"{md_writers}\n\n" \
+                   f"Cast\n" \
+                   f"{md_cast}\n\n" \
                    "----------------\n" \
-                   "Data by {} | GitHub {}"
-        return template.format(index, md_title, md_overview, md_directors, md_writers, md_cast, md_tmdb, md_rzb)
+                   f"Data by {md_tmdb} | GitHub {md_rzb}"
+        return template
 
     @staticmethod
     def get_md_title(title, m_id, release_date, poster_url):
@@ -81,7 +81,7 @@ class DailyFilm:
         poster_url = "https://image.tmdb.org/t/p/w300" + poster_url
         dt = datetime.strptime(release_date, "%Y-%M-%d")
         year = dt.year
-        return "[ ]({})[{} ({})]({})".format(poster_url, title, year, url)
+        return f"[ ]({poster_url})[{title} ({year})]({url})"
 
     @staticmethod
     def get_movie_index():
@@ -98,7 +98,7 @@ class DailyFilm:
         for p in crew:
             if p['job'] in job and p['id'] not in known_ids:
                 url = "https://www.themoviedb.org/person/" + str(p['id'])
-                md_crew += "[{}]({})  ".format(p['name'], url)
+                md_crew += f"[{p['name']}]({url})  "
                 known_ids.append(p['id'])
         return md_crew
 
@@ -112,7 +112,7 @@ class DailyFilm:
 
         for p in cast[:cast_len]:
             url = "https://www.themoviedb.org/person/" + str(p['id'])
-            md_cast += "[{}]({})  ".format(p['name'], url)
+            md_cast += f"[{p['name']}]({url})  "
             known_ids.append(p['id'])
 
         return md_cast
