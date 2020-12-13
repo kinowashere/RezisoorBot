@@ -23,7 +23,8 @@ class DailyFilm:
         movie = Movie()
         pages = 2
         movies = self.get_movies_list(pages)
-        rand_x = random.randint(0, pages*2-1)
+        rand_x = random.randint(0, pages*10-1)
+        print(rand_x)
         movie_title = movies[rand_x].obj_name
         m = self.get_movie_from_title(movie, movie_title)
         if not self.is_movie_valid(m):
@@ -50,7 +51,8 @@ class DailyFilm:
 
     @staticmethod
     def get_movie_from_title(movie, title):
-        search = movie.search(title)
+        # search = movie.search(title)
+        search = movie.search("Fantasia")
         movie_id = search[0].id
         return movie.details(movie_id)
 
@@ -59,7 +61,7 @@ class DailyFilm:
         md_title = self.get_md_title(m.title, m.id, m.release_date, m.poster_path)
         md_overview = self.get_md_overview(m.overview)
         md_directors = self.get_md_crew(m.casts['crew'], ["Director"])
-        md_writers = self.get_md_crew(m.casts['crew'], ["Writer", "Screenplay", "Author"])
+        md_writers = self.get_md_crew(m.casts['crew'], ["Writer", "Screenplay", "Author", "Story"])
         md_cast = self.get_md_cast(m.casts['cast'])
         md_tmdb = "[TMDb](https://www.themoviedb.org/)"
         md_rzb = "[RežisöörBot](https://github.com/manueltrinidad/RezisoorBot)"
