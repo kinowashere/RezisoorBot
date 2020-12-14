@@ -24,7 +24,6 @@ class DailyFilm:
         pages = 2
         movies = self.get_movies_list(pages)
         rand_x = random.randint(0, pages*10-1)
-        print(rand_x)
         movie_title = movies[rand_x].obj_name
         m = self.get_movie_from_title(movie, movie_title)
         if not self.is_movie_valid(m):
@@ -51,8 +50,7 @@ class DailyFilm:
 
     @staticmethod
     def get_movie_from_title(movie, title):
-        # search = movie.search(title)
-        search = movie.search("Fantasia")
+        search = movie.search(title)
         movie_id = search[0].id
         return movie.details(movie_id)
 
