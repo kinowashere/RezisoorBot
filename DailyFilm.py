@@ -59,7 +59,8 @@ class DailyFilm:
         md_title = self.get_md_title(m.title, m.id, m.release_date, m.poster_path)
         md_overview = self.get_md_overview(m.overview)
         md_directors = self.get_md_crew(m.casts['crew'], ["Director"])
-        md_writers = self.get_md_crew(m.casts['crew'], ["Writer", "Screenplay", "Author", "Story", "Novel"])
+        md_writers = self.get_md_crew(m.casts['crew'], ["Writer", "Screenplay", "Author", "Story", "Novel",
+                                                        "Characters"])
         md_cast = self.get_md_cast(m.casts['cast'])
         md_tmdb = "[TMDb](https://www.themoviedb.org/)"
         md_rzb = "[RežisöörBot](https://github.com/manueltrinidad/RezisoorBot)"
